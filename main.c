@@ -9,6 +9,7 @@
 int main(void)
 {
 char line[MAX_LINE];
+int i;
 
 while (1)
 {
@@ -19,7 +20,11 @@ continue;
 }
 if (is_exit_command(line))
 {
-printf("Exiting the shell.\n");
+char exit_message[] = "Exiting the shell.\n";
+for (i = 0; exit_message[i] != '\0'; i++)
+{
+putchar(exit_message[i]);
+}
 exit_shell();
 }
 else if (is_env_command(line))

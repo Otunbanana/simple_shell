@@ -22,10 +22,15 @@ return (strcmp(command, "env") == 0);
 void print_environment(void)
 {
 char **env_var = environ;
+int i;
 
 while (*env_var != NULL)
 {
-printf("%s\n", *env_var);
+for (i = 0; (*env_var)[i] != '\0'; i++)
+{
+putchar((*env_var)[i]);
+}
+putchar('\n');
 env_var++;
 }
 }

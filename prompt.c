@@ -10,11 +10,15 @@
 void read_command(char *line)
 {
 char *prompt = "#cisfun$ ";
-printf("%s", prompt);
+int i;
 
+for (i = 0; prompt[i] != '\0'; i++)
+{
+putchar(prompt[i]);
+}
 if (fgets(line, MAX_LINE, stdin) == NULL)
 {
-printf("\n");
+putchar('\n');
 exit(0);
 }
 
