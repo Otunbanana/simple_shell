@@ -21,14 +21,14 @@ child_pid = fork();
 if (child_pid < 0)
 {
 perror("fork");
-exit(1);
+_exit(EXIT_FAILURE);
 }
 
 if (child_pid == 0)
 {
 execvp(args[0], args);
 perror(args[0]);
-exit(1);
+_exit(EXIT_FAILURE);
 }
 else
 {
