@@ -28,9 +28,9 @@ while (*env_var != NULL)
 {
 for (i = 0; (*env_var)[i] != '\0'; i++)
 {
-putchar((*env_var)[i]);
+_putchar((*env_var)[i]);
 }
-putchar('\n');
+_putchar('\n');
 env_var++;
 }
 }

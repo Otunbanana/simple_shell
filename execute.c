@@ -47,13 +47,13 @@ parse_args(line, args);
 
 if (access(args[0], X_OK) == -1)
 {
-char *command_path = malloc(strlen("/bin/") + strlen(args[0]) + 1);
+char *command_path = malloc(strlen("/bin/") + _strlen(args[0]) + 1);
 strcpy(command_path, "/bin/");
 strcat(command_path, args[0]);
 
 if (access(command_path, X_OK) != -1)
 {
-args[0] = realloc(args[0], strlen(command_path) + 1);
+args[0] = realloc(args[0], _strlen(command_path) + 1);
 strcpy(args[0], command_path);
 }
 else

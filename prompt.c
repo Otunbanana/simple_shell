@@ -14,11 +14,11 @@ int i;
 
 for (i = 0; prompt[i] != '\0'; i++)
 {
-putchar(prompt[i]);
+_putchar(prompt[i]);
 }
 if (fgets(line, MAX_LINE, stdin) == NULL)
 {
-putchar('\n');
+_putchar('\n');
 exit(0);
 }
 

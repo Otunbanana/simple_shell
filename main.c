@@ -14,7 +14,7 @@ int i;
 while (1)
 {
 read_command(line);
-if (strlen(line) == 0)
+if (_strlen(line) == 0)
 {
 continue;
 }
@@ -23,7 +23,7 @@ if (is_exit_command(line))
 char exit_message[] = "Exiting the shell.\n";
 for (i = 0; exit_message[i] != '\0'; i++)
 {
-putchar(exit_message[i]);
+_putchar(exit_message[i]);
 }
 exit_shell();
 }
