@@ -17,9 +17,10 @@ if (_strlen(line) == 0)
 {
 continue;
 }
+
 if (is_exit_command(line))
 {
-exit_shell();
+exit(0);
 }
 else if (is_env_command(line))
 {
@@ -30,5 +31,6 @@ else
 execute_command(line);
 }
 }
+
 return (0);
 }

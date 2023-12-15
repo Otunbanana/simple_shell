@@ -13,6 +13,7 @@ int is_env_command(const char *command)
 return (strcmp(command, "env") == 0);
 }
 
+
 /**
 * print_environment - print the environment
 *
@@ -22,15 +23,17 @@ return (strcmp(command, "env") == 0);
 void print_environment(void)
 {
 char **env_var = environ;
-int i;
-
 while (*env_var != NULL)
 {
-for (i = 0; (*env_var)[i] != '\0'; i++)
+char *current = *env_var;
+while (*current != '\0')
 {
-_putchar((*env_var)[i]);
+_putchar(*current);
+current++;
 }
-_putchar('\n');
+
 env_var++;
+if (*env_var != NULL)
+_putchar('\n');
 }
 }

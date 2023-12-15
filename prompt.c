@@ -9,7 +9,7 @@
 
 void read_command(char *line)
 {
-char *prompt = "$ ";
+char *prompt = "$";
 int i;
 
 if (isatty(STDIN_FILENO))
@@ -22,9 +22,8 @@ _putchar(prompt[i]);
 
 if (fgets(line, MAX_LINE, stdin) == NULL)
 {
-_putchar('\n');
 exit(0);
 }
 
-line[strlen(line) - 1] = '\0';
+line[_strlen(line) - 1] = '\0';
 }

@@ -26,9 +26,12 @@ _exit(EXIT_FAILURE);
 
 if (child_pid == 0)
 {
-execvp(args[0], args);
+
+if (execve(args[0], args, environ) == -1)
+{
 perror(args[0]);
 _exit(EXIT_FAILURE);
+}
 }
 else
 {

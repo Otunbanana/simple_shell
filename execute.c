@@ -14,11 +14,21 @@ void parse_args(char *line, char **args)
 {
 char *token;
 int i = 0;
+int j;
 
 token = strtok(line, " ");
 while (token != NULL)
 {
 args[i] = strdup(token);
+if (!args[i])
+{
+perror("malloc");
+for (j = 0; j < i; j++)
+{
+free(args[j]);
+}
+exit(1);
+}
 i++;
 token = strtok(NULL, " ");
 }
@@ -36,17 +46,27 @@ void execute_command(char *line)
 {
 char **args = malloc(sizeof(char *) * MAX_ARGS);
 int i;
-
-if (args == NULL)
+if (!args)
 {
 perror("malloc");
 exit(1);
 }
 
 parse_args(line, args);
+
 if (access(args[0], X_OK) == -1)
 {
 char *command_path = malloc(strlen("/bin/") + _strlen(args[0]) + 1);
+if (!command_path)
+{
+perror("malloc");
+for (i = 0; i < MAX_ARGS && args[i] != NULL; i++)
+{
+free(args[i]);
+}
+free(args);
+exit(1);
+}
 strcpy(command_path, "/bin/");
 strcat(command_path, args[0]);
 if (access(command_path, X_OK) != -1)
@@ -58,19 +78,9 @@ else
 {
 perror(args[0]);
 free(command_path);
-for (i = 0; i < MAX_ARGS && args[i] != NULL; i++)
-{
-free(args[i]);
-}
-free(args);
+
 return;
 }
-free(command_path);
 }
 execute_with_fork(args);
-for (i = 0; i < MAX_ARGS && args[i] != NULL; i++)
-{
-free(args[i]);
-}
-free(args);
 }
