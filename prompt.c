@@ -1,6 +1,4 @@
 #include "main.h"
-#include <stdio.h>
-#include <sys/stat.h>
 
 /**
 * read_command - Read user input
@@ -11,8 +9,9 @@
 
 void read_command(char *line)
 {
-char *prompt = "#cisfun$";
+char *prompt = "#cisfun$ ";
 int i;
+
 if (isatty(STDIN_FILENO))
 {
 for (i = 0; prompt[i] != '\0'; i++)

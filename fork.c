@@ -21,14 +21,14 @@ child_pid = fork();
 if (child_pid < 0)
 {
 perror("fork");
-exit(1);
+_exit(EXIT_FAILURE);
 }
 
 if (child_pid == 0)
 {
-execve(args[0], args, environ);
+execvp(args[0], args);
 perror(args[0]);
-exit(1);
+_exit(EXIT_FAILURE);
 }
 else
 {
@@ -38,7 +38,6 @@ waitpid(child_pid, NULL, 0);
 for (i = 0; i < MAX_ARGS && args[i] != NULL; i++)
 {
 free(args[i]);
-args[i] = NULL;
 }
 free(args);
 }
