@@ -14,7 +14,7 @@
 void execute_with_fork(char **args)
 {
 pid_t child_pid;
-int i;
+int status;
 
 child_pid = fork();
 
@@ -26,7 +26,6 @@ _exit(EXIT_FAILURE);
 
 if (child_pid == 0)
 {
-
 if (execve(args[0], args, environ) == -1)
 {
 perror(args[0]);
@@ -35,12 +34,15 @@ _exit(EXIT_FAILURE);
 }
 else
 {
-waitpid(child_pid, NULL, 0);
-}
+waitpid(child_pid, &status, 0);
 
-for (i = 0; i < MAX_ARGS && args[i] != NULL; i++)
+if (WIFEXITED(status))
 {
-free(args[i]);
+_exit(WEXITSTATUS(status));
 }
-free(args);
+else if (WIFSIGNALED(status))
+{
+_exit(128 + WTERMSIG(status));
+}
+}
 }
