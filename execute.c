@@ -54,6 +54,12 @@ exit(1);
 
 parse_args(line, args);
 
+if (args[0] == NULL) {
+free(args);
+return;
+}
+
+
 if (access(args[0], X_OK) == -1)
 {
 char *command_path = malloc(strlen("/bin/") + _strlen(args[0]) + 1);
