@@ -9,7 +9,7 @@
 
 void read_command(char *line)
 {
-char *prompt = "#cisfun$ ";
+char *prompt = "$ ";
 int i;
 
 if (isatty(STDIN_FILENO))
